@@ -37,9 +37,9 @@ app.post("/file_upload", (req, res, next) => {
 
             const { spawn } = require('child_process');
 
-            console.log(fileName);
+            
 
-            const pyprog = spawn('python', ['dummy.py', fileName,fileType]);
+            const pyprog = spawn('python', ['label_images.py','./plant.jpg']);
 
             pyprog.stdout.on('data', function (data) {
                 success(data);
@@ -52,7 +52,7 @@ app.post("/file_upload", (req, res, next) => {
 
         runPy.then(result => {
             console.log(result.toString());
-            res.send(resultInformation('Tomato Leaf Mold'));
+
         })
         .catch(err => {
                 console.log("Error from spawn", err)
